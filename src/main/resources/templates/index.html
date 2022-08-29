@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/register-css.css}">
+    <link rel="stylesheet" th:href="@{/css/home-css.css}">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/header-footer-function.js"></script>
+</head>
+<body>
+<!--start of Navigation bar-->
+<div id="nav-placeholder">
+</div>
+<!--end of Navigation bar-->
+<div class="container-fluid text-center ">
+    <div class="row content sidenav" style="height: 100%">
+        <div class="col-sm-2">
+            <p>Interesting articles:</p>
+            <p><a href="https://www.abc.net.au/news/science/2018-09-13/fake-news-free-tools-for-spotting-bogus-stories-images/10233846">Link</a></p>
+            <p><a href="https://spotfakenews.ca/">Link</a></p>
+            <p><a href="https://theconversation.com/you-are-the-new-gatekeeper-of-the-news-71862">Link</a></p>
+        </div>
+        <div class="col-sm-8 text-left" style="background-color: rgba(64,191,140,0.82); color:whitesmoke; border-radius: 10px;">
+            <h1 style="text-align: center">Welcome!</h1>
+            <br>
+            <p style="text-align: center">Hi there! Nice to have you as our guest.<br><br>
+            </p>
+            <h6 style="color: #0c4128; text-align: center">"SHOCKING NEWS! This afternoon we expect dangerous thunderstorm in the area of Skopje! Stay at home and stay safe!!!"<br>
+                <br></h6>
+            <p style="text-align: center;">
+                After you read this sentence we guess that you questioned yourself if it is true. Got ya!
+                <br>This particular information is false and you almost believed it. <br>
+            </p>
+            <div>
+                <img src="/img/image_1.jpg" style="width: 60%">
+            </div>
+            <br>
+<p style="text-align: center">If you want to know the truth and learn how to recognize 'false news' click the following button and start learning today!
+</p>
+            <button class="btn btn-outline-dark" onclick="window.location.href='/lectures/list-all/1'" style="margin-top: 2%; margin-bottom: 2%;">
+                Start learning today!
+            </button>
+            <p></p>
+        </div>
+        <div class="col-sm-2">
+            <div class="well">
+                <p>ADS</p>
+            </div>
+            <div class="well">
+                <p>ADS</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--start of footer-->
+<div id="footer-placeholder">
+</div>
+<!--end of footer-->
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" >
+    <title>Lecture</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/register-css.css">
+    <link rel="stylesheet" href="/css/home-css.css">
+    <script src="/js/boottrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/js/questions-html-function.js"></script>
+    <script src="/js/header-footer-function.js"></script>
+
+    <style>
+        /* When hovering over li, apply styles to child a */
+        a:link, a:visited, a:active {
+            color: #555;
+        }
+        a:hover {
+            color: white;
+        }
+        .mainlist li {
+            display: block;
+            text-align: center;
+            width:100%;
+            padding:10px 0;
+            cursor:pointer;
+            border-bottom:1px solid #3a4654;
+        }
+
+        .mainlist li:hover {
+            background: mediumseagreen;
+            color: white;
+
+        }
+        .mainlist a:hover{
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+<!--start of Navigation bar-->
+<div id="nav-placeholder">
+</div>
+<!--end of Navigation bar-->
+<div class="container-fluid text-center sidenav" >
+    <div class="row content h-100">
+        <div class="col-sm-2">
+            <h5>
+                Lectures:
+            </h5>
+            <ul class="nav flex-column mainlist" th:each="lecture : ${lectures}">
+                <li class="nav-item" >
+                    <a class="nav-link" th:href="@{'/lectures/lecture/'+${lecture.getId()}}"><span th:text="${lecture.getTitle()}"></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-8 text-left bg-white" style="margin-left: 20px;">
+            <h1  th:text="${lecture.getTitle()}"></h1>
+            <hr>
+            <img th:src="@{'/img/image_'+${lecture.getId()}}+'.jpg'" style="width: 40%">
+            <p style="text-align: justify; padding: 30px;" th:text="${lecture.getText()}"></p>
+            <div id="buttonMarkAsDone">
+            <a th:if="${!status}" th:href="@{'/lectures/lecture/set-status/'+${lecture.getId()}}">
+                <button class="btn btn-success" style="color:white; height: 50px; width: 200px; border-radius: 10px;">
+                <span >Mark as completed</span>
+            </button></a>
+                <a th:if="${status}" th:href="@{'/lectures/lecture/set-status/'+${lecture.getId()}}">
+                <button class="btn btn-danger" style="color:white; height: 50px; width: 220px; border-radius: 10px;">
+                    <span>Mark as not completed</span>
+                </button></a>
+            </div>
+            <h4 style="color: #0c4128; margin-top: 2%">Check your knowledge!</h4>
+            <div id="questions-placeholder">
+                <div class="m-4">
+                    <div class="accordion" id="myAccordion">
+                        <div class="accordion-item" th:each="question, itrStat : ${questions}">
+                            <h2 class="accordion-header" th:id="@{'heading'+${itrStat.index}}">
+                                <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" th:data-bs-target="@{'#collapse'+${itrStat.index}}" th:text="${question.getQuestion()}"></button>
+                            </h2>
+                            <div th:id="@{'collapse'+${itrStat.index}}" class="accordion-collapse collapse" data-bs-parent="#myAccordion" >
+                                <div class="card-body">
+                                    <p th:text="${question.getAnswer()}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>

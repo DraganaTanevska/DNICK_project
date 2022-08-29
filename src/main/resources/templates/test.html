@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Прашања</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/register-css.css">
+    <link rel="stylesheet" href="/css/home-css.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/js/header-footer-function.js"></script>
+    <style>
+        .div2 {
+            font-family: sans-serif;
+            background-color: rgba(0, 0, 0, 0.1);
+            align-items: flex-start;
+            margin: 2% 20% 2px;
+            padding: 2%;
+            border-radius: 1%;
+        }
+        fieldset{
+         margin-bottom: 50px;
+        }
+        label {
+            margin-right: 15px;
+            line-height: 32px;
+        }
+
+        input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+
+            border: 2px solid #999;
+            transition: 0.2s all linear;
+            margin-right: 5px;
+
+            position: relative;
+            top: 4px;
+        }
+
+        input:checked {
+            border: 6px solid black;
+        }
+
+        button,
+        legend {
+            color: rgba(88,195,132,0.82);
+            padding: 5px 10px;
+            border-radius: 0;
+            border: 0;
+            font-size: 14px;
+            margin-top: 2%;
+        }
+
+        button:hover,
+        button:focus {
+            color: #999;
+        }
+
+        button:active {
+            background-color: white;
+            color: black;
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<!--start of Navigation bar-->
+<div id="nav-placeholder">
+</div>
+<!--end of Navigation bar-->
+<div class="div2" th:if="${score}">
+<fieldset style="color: darkgreen;" th:text="@{'Your test score is: '+${#numbers.formatDecimal(score,1,2)}+'%. If you reattempt the test, you lose the results.'}"></fieldset>
+</div>
+<div class="div2">
+<form method="POST" action="/test/post">
+<fieldset>
+    <legend th:text="${questions.get(0).getQuestion()}"></legend>
+
+    <div >
+        <input type="radio" id="answer1" name="answer1" th:value="answer1"
+               checked>
+        <label for="answer1" >The term ‘fake news’ is closely associated with economics, and this association can unhelpfully narrow the focus of the issue.</label>
+    </div>
+
+    <div>
+        <input type="radio" id="answer2" name="answer1" th:value="${questions.get(0).getAnswer()}"
+               checked>
+        <label for="answer2" th:text="${questions.get(0).getAnswer()}"></label>
+    </div>
+
+    <div>
+        <input type="radio" id="answer3" name="answer1" th:value="answer3"
+               checked>
+        <label for="answer3" >The term ‘fake news’ is closely associated with many topics such as politics, economics and health.</label>
+    </div>
+
+</fieldset>
+
+    <legend th:text="${questions.get(1).getQuestion()}"></legend>
+
+    <div >
+        <input type="radio" id="answer4" name="answer2" value="answer1"
+               checked>
+        <label for="answer4">The term ‘false information’ refers to a diverse range of misinformation and disinformation and is always associated with politics.</label>
+    </div>
+
+    <div>
+        <input type="radio" id="answer5" name="answer2" th:value="answer2"
+               checked>
+        <label for="answer5">The term ‘false information’ refers to a diverse range of misinformation and disinformation covering topics only in the field of economics across all platforms and genres.</label>
+    </div>
+
+    <div>
+        <input type="radio" id="answer6" name="answer2" th:value="${questions.get(1).getAnswer()}"
+               checked>
+        <label for="answer6" th:text="${questions.get(1).getAnswer()}">Answer 3</label>
+    </div>
+
+    </fieldset>
+    <legend th:text="${questions.get(2).getQuestion()}"></legend>
+
+    <div >
+        <input type="radio" id="answer7" name="answer3" th:value="${questions.get(2).getAnswer()}"
+               checked>
+        <label for="answer7" th:text="${questions.get(2).getAnswer()}"></label>
+    </div>
+
+    <div>
+        <input type="radio" id="answer8" name="answer3" value="answer8"
+               checked>
+        <label for="answer8">The term "fake news" gained importance with the electoral context in South America.</label>
+    </div>
+
+    <div>
+        <input type="radio" id="answer9" name="answer3" value="answer9"
+               checked>
+        <label for="answer9">The term "fake news" hasn't gained any importance yet.</label>
+    </div>
+
+    </fieldset>
+    <div>
+        <button type="submit" class="btn-success">Submit</button>
+    </div>
+</form>
+
+</div>
+</body>
+</html>

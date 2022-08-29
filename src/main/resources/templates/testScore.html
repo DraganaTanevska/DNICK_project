@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/register-css.css">
+    <link rel="stylesheet" href="/css/home-css.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/js/header-footer-function.js"></script>
+</head>
+<style>
+    .div2 {
+        font-family: sans-serif;
+        background-color: rgba(0, 0, 0, 0.1);
+        align-items: flex-start;
+        margin: 2% 20% 2px;
+        padding: 2%;
+        border-radius: 1%;
+    }
+    fieldset{
+        margin-bottom: 50px;
+    }
+    label {
+        margin-right: 15px;
+        line-height: 32px;
+    }
+
+    input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+
+        border: 2px solid #999;
+        transition: 0.2s all linear;
+        margin-right: 5px;
+
+        position: relative;
+        top: 4px;
+    }
+
+    input:checked {
+        border: 6px solid black;
+    }
+
+    button,
+    legend {
+        color: rgba(88,195,132,0.82);
+        padding: 5px 10px;
+        border-radius: 0;
+        border: 0;
+        font-size: 14px;
+        margin-top: 2%;
+    }
+</style>
+<body>
+
+<!--start of Navigation bar-->
+<div id="nav-placeholder">
+</div>
+<!--end of Navigation bar-->
+
+<div class="div2">
+    <h4 style="color: green;"> Congratulations! Remember, if you are not satisfied with your results you can always go back and re-attempt the test! </h4>
+    <a href="/test"><button class="btn-success" style="color:white;">Re-attempt the test</button></a>
+    <fieldset><b th:text="@{'Your score is: '+${#numbers.formatDecimal(score,1,2)}+'%'}"></b></fieldset>
+</div>
+</body>
+</html>

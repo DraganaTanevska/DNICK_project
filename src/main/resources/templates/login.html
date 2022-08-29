@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/register-css.css}">
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+</head>
+
+<section class="vh-100" style="background-color: rgba(126,232,188,0.82)">
+<div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="/img/image_7.jpg"
+                                 alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+
+                                <form method="POST" action="/login">
+
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log into your account in order to continue</h5>
+
+                                    <div class="form-outline mb-4">
+                                        <input th:required="required" type="text" id="username" name="username" class="form-control form-control-lg" />
+                                        <label class="form-label" for="username" >Username</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input th:required="required" type="password" id="password" name="password" class="form-control form-control-lg" />
+                                        <label class="form-label" for="password">Password</label>
+                                    </div>
+
+                                    <a href="/home">
+                                        <p style="width: 150px;">Back</p>
+                                    </a>
+                                    <div class="pt-1 mb-4">
+                                        <button type="submit" value="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" style="width: 150px;">Log in</button>
+                                    </div>
+
+                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account yet?
+                                        <a href="/register" style="color: #393f81;">Create an account here!</a>
+                                    </p>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</html>
