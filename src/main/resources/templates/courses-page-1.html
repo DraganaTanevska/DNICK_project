@@ -41,7 +41,7 @@
             <h5 th:text="${userLecture.getLecture().getTitle()}"></h5>
             <p style="font-size:12px; color:#03225C;" th:text="${userLecture.getLecture().getText().substring(0,400)}+'...'"></p>
             <a th:href="@{'/lectures/lecture/'+${userLecture.getLecture().getId()}}">
-            <button type="button" class="btn btn-success">Види повеќе</button>
+            <button type="button" class="btn btn-success">View more</button>
             </a>
             <div style="margin-bottom: 2%">
                 Completed lecture:
