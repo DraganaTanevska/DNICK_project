@@ -36,8 +36,6 @@ public class RegisterController {
      */
     @PostMapping
     public String toLoginPage(@RequestParam String email, @RequestParam String password, @RequestParam String username) {
-        String surname = "Tanevska";
-        String name = "Dragana";
         Role role = Role.ROLE_ADMIN;
         userService.Register(username, name, surname, email, password, role);
         userLectureService.addUserLectureRelation(username);
