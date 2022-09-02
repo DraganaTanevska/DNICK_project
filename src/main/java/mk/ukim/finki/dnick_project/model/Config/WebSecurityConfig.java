@@ -28,14 +28,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/img/**","/js/**", "/css/**","/home","/assets/**", "/register", "/login").permitAll()
+                .antMatchers("/", "/home/**","/img/**","/css/**","/js/**", "/assets/**", "/register", "/login", "/api/**","/aboutUs","/contact").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .failureUrl("/login?error=BadCredentials")
-                .defaultSuccessUrl("/lectures/list-all/1", true)
+                .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
                 .logoutUrl("/logout")
@@ -45,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/home")
                 .and()
                 .exceptionHandling().accessDeniedPage("/access_denied");
-
     }
 
     @Override
