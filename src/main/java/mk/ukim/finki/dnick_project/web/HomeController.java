@@ -12,7 +12,7 @@ import java.io.IOException;
 public class HomeController {
     @GetMapping
     public String getHomePage(Model model) throws IOException, InterruptedException {
-        return "index";
+        return "home";
     }
 
     @GetMapping("/access_denied")

@@ -37,15 +37,6 @@ public class UserLectureServiceImpl implements UserLectureService {
     }
 
     @Override
-    public void addUserLectureRelation(String userId) {
-        for (Lecture lecture:
-             lectureRepository.findAll()) {
-            UserLectureRelation userLectureRelation = new UserLectureRelation(userRepository.findByUsername(userId).orElse(null), lecture, false);
-            userLectureRelationRepository.save(userLectureRelation);
-        }
-    }
-
-    @Override
     public Page<UserLectureRelation> findAllByUsername(String userId, Integer page) {
         Page<UserLectureRelation> userLectureRelations = userLectureRelationRepository.findAllByUser(userRepository.findByUsername(userId).orElse(null),PageRequest.of(page-1,4, Sort.by("lecture")));
         return userLectureRelations;
