@@ -41,7 +41,7 @@ public class LectureController {
     @GetMapping({"/lecture/set-status/{lectureId}"})
     public String setStatus(Model model, @PathVariable Long lectureId, HttpServletRequest request){
         userLectureRelationService.setStatus(request.getRemoteUser(),lectureId);
-        return "redirect:/lectures/list-all/1";
+        return "redirect:/lectures/lecture/{lectureId}";
     }
 
 }

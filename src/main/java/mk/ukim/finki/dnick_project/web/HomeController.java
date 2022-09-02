@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping(value = {"/","/home"})
 public class HomeController {
     @GetMapping
     public String getHomePage(Model model) throws IOException, InterruptedException {
-        return "index";
+        return "home";
     }
 
     @GetMapping("/access_denied")

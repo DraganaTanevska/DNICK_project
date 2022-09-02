@@ -50,9 +50,12 @@
             <h5>
                 Lectures:
             </h5>
-            <ul class="nav flex-column mainlist" th:each="lecture : ${lectures}">
-                <li class="nav-item" >
-                    <a class="nav-link" th:href="@{'/lectures/lecture/'+${lecture.getId()}}"><span th:text="${lecture.getTitle()}"></span></a>
+            <ul class="nav flex-column mainlist" th:each="l : ${lectures}">
+                <li class="nav-item" th:if="${l.getId()}==${lecture.getId}" style="background-color: mediumseagreen; color: white" >
+                    <a class="nav-link" th:href="@{'/lectures/lecture/'+${l.getId()}}"><span th:text="${l.getTitle()}"></span></a>
+                </li>
+                <li class="nav-item" th:if="${l.getId()}!=${lecture.getId}">
+                    <a class="nav-link" th:href="@{'/lectures/lecture/'+${l.getId()}}"><span th:text="${l.getTitle()}"></span></a>
                 </li>
             </ul>
         </div>
