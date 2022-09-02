@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
         for (Lecture lecture:
                 lectureRepository.findAll()) {
-            UserLectureRelation userLectureRelation = new UserLectureRelation(user, lecture, false);
+            UserLectureRelation userLectureRelation = new UserLectureRelation(newUser, lecture, false);
             userLectureRelationRepository.save(userLectureRelation);
         }
         return user;
