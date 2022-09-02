@@ -41,6 +41,6 @@ public class RegisterController {
         Role role = Role.ROLE_ADMIN;
         userService.Register(username, name, surname, email, password, role);
         userLectureService.addUserLectureRelation(username);
-        return "/login";
+        return "login";
     }
 }
