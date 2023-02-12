@@ -11,7 +11,7 @@ public interface UserService extends UserDetailsService {
 
     User Login(String username, String password);
 
-    void DeleteUser(String username);
-
     User findUserByUsername(String userId);
+
+    double findUserByUsernameAndGetTestResults(String userId);
 }

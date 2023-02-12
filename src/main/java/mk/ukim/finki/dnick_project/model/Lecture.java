@@ -27,8 +27,8 @@ public class Lecture {
         return Text;
     }
     public Lecture(){}
-
-    public Lecture(Long id) {
-        id = id;
+    public Lecture(String title, String text){
+        this.Title = title;
+        this.Text = text;
     }
 }

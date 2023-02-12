@@ -4,6 +4,7 @@ import mk.ukim.finki.dnick_project.model.Lecture;
 import mk.ukim.finki.dnick_project.model.Role;
 import mk.ukim.finki.dnick_project.model.User;
 import mk.ukim.finki.dnick_project.model.UserLectureRelation;
+import mk.ukim.finki.dnick_project.model.exceptions.InvalidUsernameOrPassword;
 import mk.ukim.finki.dnick_project.model.exceptions.UsernameAlreadyExistsException;
 import mk.ukim.finki.dnick_project.repository.LectureRepository;
 import mk.ukim.finki.dnick_project.repository.UserLectureRelationRepository;
@@ -48,16 +49,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean CheckIfExistLogin(String username, String password) {
-        User existingUser = this.userRepository.findByUsernameAndPassword(username, password);
+        User existingUser = this.userRepository.findByUsernameAndPassword(username, password).orElseThrow(()->new InvalidUsernameOrPassword());
         return existingUser != null;
     }
 
     public User Login(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username, password);
-    }
-
-    public void DeleteUser(String username) {
-        userRepository.delete(userRepository.getById(username));
+        return userRepository.findByUsernameAndPassword(username, password).orElseThrow(() -> new InvalidUsernameOrPassword());
     }
 
     @Override
@@ -65,9 +62,23 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(userId).orElse(null);
     }
 
+
+    @Override
+    public double findUserByUsernameAndGetTestResults(String userId) {
+        User user = userRepository.findByUsername(userId).orElse(null);
+        if(user!=null)
+        {
+            return user.getTestResults();
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException(s));
+        return userRepository.findByUsername(s).orElse(null);
     }
 
 }

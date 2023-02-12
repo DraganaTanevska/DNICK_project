@@ -13,6 +13,20 @@ public class Question {
     @ManyToOne
     Lecture lecture;
 
+    public Question(){}
+    public Question(String question, String answer, Lecture lecture) {
+        this.question = question;
+        this.answer = answer;
+        this.lecture = lecture;
+    }
+
+    public Question(Long Id, String question, String answer, Lecture lecture) {
+        this.Id = Id;
+        this.question = question;
+        this.answer = answer;
+        this.lecture = lecture;
+    }
+
     public Long getId() {
         return Id;
     }

@@ -41,12 +41,12 @@
             <h5 th:text="${userLecture.getLecture().getTitle()}"></h5>
             <p style="font-size:12px; color:#03225C;" th:text="${userLecture.getLecture().getText().substring(0,400)}+'...'"></p>
             <a th:href="@{'/lectures/lecture/'+${userLecture.getLecture().getId()}}">
-            <button type="button" class="btn btn-success">View more</button>
+            <button type="button" class="btn btn-success viewMoreButton">View more</button>
             </a>
             <div style="margin-bottom: 2%">
                 Completed lecture:
-                <span th:if="${userLecture.getStatus()}" class='bi bi-check' style="color: white; border-radius:30%;background-color: green;" ></span>
-                <span th:if="${!userLecture.getStatus()}" class='bi bi-x' style="color: white; border-radius:30%;background-color: red;"></span>
+                <span th:if="${userLecture.getStatus()}" class='bi bi-check status' style="color: white; border-radius:30%;background-color: green;" ></span>
+                <span th:if="${!userLecture.getStatus()}" class='bi bi-x status' style="color: white; border-radius:30%;background-color: red;"></span>
 
             </div>
         </div>

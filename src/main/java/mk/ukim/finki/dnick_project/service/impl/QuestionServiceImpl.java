@@ -3,6 +3,7 @@ package mk.ukim.finki.dnick_project.service.impl;
 import mk.ukim.finki.dnick_project.model.Lecture;
 import mk.ukim.finki.dnick_project.model.Question;
 import mk.ukim.finki.dnick_project.model.User;
+import mk.ukim.finki.dnick_project.model.exceptions.LectureNotFoundException;
 import mk.ukim.finki.dnick_project.model.exceptions.QuestionNotFoundException;
 import mk.ukim.finki.dnick_project.repository.LectureRepository;
 import mk.ukim.finki.dnick_project.repository.QuestionRepository;
@@ -33,7 +34,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<Question> findAllByLecture(Long lectureId) {
-        Lecture lecture = lectureRepository.findById(lectureId).orElse(null);
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(()-> new LectureNotFoundException(lectureId));
         List<Question> questionList = new ArrayList<>();
         if(lecture != null)
         {
@@ -72,6 +73,8 @@ public class QuestionServiceImpl implements QuestionService {
         }
         sum*=100;
         User user=userRepository.findByUsername(userId).orElse(null);
+        if(user == null)
+            return 0.0;
         user.setTestResults(sum);
         userRepository.save(user);
         return sum;

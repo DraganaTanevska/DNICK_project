@@ -3,6 +3,7 @@ package mk.ukim.finki.dnick_project.service.impl;
 import mk.ukim.finki.dnick_project.model.Lecture;
 import mk.ukim.finki.dnick_project.model.User;
 import mk.ukim.finki.dnick_project.model.UserLectureRelation;
+import mk.ukim.finki.dnick_project.model.exceptions.LectureNotFoundException;
 import mk.ukim.finki.dnick_project.repository.LectureRepository;
 import mk.ukim.finki.dnick_project.repository.UserLectureRelationRepository;
 import mk.ukim.finki.dnick_project.repository.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -45,9 +47,9 @@ public class UserLectureServiceImpl implements UserLectureService {
 
     @Override
     public void setStatus(String userId, Long lectureId) {
-        Lecture lecture = lectureRepository.findById(lectureId).orElse(null);
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(()-> new LectureNotFoundException(lectureId));
         User user = userRepository.findByUsername(userId).orElse(null);
-        if(lecture!=null && user!=null)
+        if(user!=null)
         {
             UserLectureRelation userLectureRelation = userLectureRelationRepository.findAllByLectureAndUser(lecture,user).stream().findFirst().orElse(null);
             if(userLectureRelation != null)
@@ -61,7 +63,7 @@ public class UserLectureServiceImpl implements UserLectureService {
 
     @Override
     public boolean getStatus(String userId, Long lectureId) {
-        UserLectureRelation userLectureRelation = userLectureRelationRepository.findAllByLectureAndUser(lectureRepository.findById(lectureId).orElse(null),userRepository.findByUsername(userId).orElse(null)).stream().findFirst().orElse(null);
+        UserLectureRelation userLectureRelation = userLectureRelationRepository.findAllByLectureAndUser(lectureRepository.findById(lectureId).orElseThrow(()-> new LectureNotFoundException(lectureId)),userRepository.findByUsername(userId).orElse(null)).stream().findFirst().orElse(null);
         if(userLectureRelation != null)
         {
             return userLectureRelation.getStatus();

@@ -64,16 +64,14 @@
             <hr>
             <img th:src="@{'/img/image_'+${lecture.getId()}}+'.jpg'" style="width: 40%">
             <p style="text-align: justify; padding: 30px;" th:text="${lecture.getText()}"></p>
-            <div id="buttonMarkAsDone">
             <a th:if="${!status}" th:href="@{'/lectures/lecture/set-status/'+${lecture.getId()}}">
-                <button class="btn btn-success" style="color:white; height: 50px; width: 200px; border-radius: 10px;">
+                <button id="statusNotCompleted" class="btn btn-success status" style="color:white; height: 50px; width: 200px; border-radius: 10px;">
                 <span >Mark as completed</span>
             </button></a>
                 <a th:if="${status}" th:href="@{'/lectures/lecture/set-status/'+${lecture.getId()}}">
-                <button class="btn btn-danger" style="color:white; height: 50px; width: 220px; border-radius: 10px;">
+                <button id="statusCompleted" class="btn btn-danger status" style="color:white; height: 50px; width: 220px; border-radius: 10px;">
                     <span>Mark as not completed</span>
                 </button></a>
-            </div>
             <h4 style="color: #0c4128; margin-top: 2%">Check your knowledge!</h4>
             <div id="questions-placeholder">
                 <div class="m-4">

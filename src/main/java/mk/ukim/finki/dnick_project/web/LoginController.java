@@ -1,8 +1,13 @@
 package mk.ukim.finki.dnick_project.web;
 
+import mk.ukim.finki.dnick_project.model.User;
+import mk.ukim.finki.dnick_project.model.exceptions.InvalidUsernameOrPassword;
 import mk.ukim.finki.dnick_project.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/login")
@@ -26,20 +31,18 @@ public class LoginController {
      * @return home.html
      */
     @PostMapping
-    public String UserLogin(@RequestParam String username, @RequestParam String password) {
-        if (authService.CheckIfExistLogin(username, password))
-            return "home";
-        else return "/home?error=NonExistingUser";
+    public String UserLogin(Model model, HttpServletRequest request, @RequestParam String username, @RequestParam String password) {
+        User user;
+        try{
+            user = this.authService.Login(username, password);
+            request.getSession().setAttribute("user", user);
+            return "redirect:/home";
+        }
+        catch (InvalidUsernameOrPassword exception) {
+            model.addAttribute("hasError", true);
+            model.addAttribute("error", exception.getMessage());
+            return "login";
+        }
     }
 
-    /**
-     * Deletes user with given username
-     * @param username - Checks if user with username exists
-     * @return home.html
-     */
-    @PostMapping("/delete/{username}")
-    public String DeleteUser(@PathVariable String username) {
-        authService.DeleteUser(username);
-        return "/home";
-    }
 }
